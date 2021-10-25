@@ -1,0 +1,114 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+&soc {
+	tlmm: pinctrl@03000000 {
+		/delete-node/ ufs_dev_reset_assert;
+		/delete-node/ ufs_dev_reset_deassert;
+
+		ts_mux {
+			commonfp_reset_reset: commonfp_reset_reset {
+				mux {
+					pins = "gpio20";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio20";
+					drive-strength = <2>;
+					bias-disable = <0>;
+					output-low;
+				};
+			};
+
+			commonfp_reset_active: commonfp_reset_active {
+				mux {
+					pins = "gpio20";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio20";
+					drive-strength = <2>;
+					bias-disable = <0>;
+					output-high;
+				};
+			};
+
+			commonfp_irq_active: commonfp_irq_active {
+				mux {
+					pins = "gpio72";
+					function = "gpio";
+				};
+
+				config {
+					pins = "gpio72";
+					drive-strength = <2>;
+					bias-disable = <0>;
+					input-enable;
+				};
+			};
+
+		};
+	};
+};
+
+&spkr_2_sd_n_sleep {
+	mux {
+		pins = "gpio34";
+	};
+
+	config {
+		pins = "gpio34";
+	};
+};
+
+&spkr_2_sd_n_active {
+	mux {
+		pins = "gpio34";
+	};
+
+	config {
+		pins = "gpio34";
+	};
+};
+
+&cam_tof_active {
+	mux {
+		pins = "gpio50", "gpio42";
+	};
+
+	config {
+		pins = "gpio50", "gpio42";
+	};
+};
+
+&cam_tof_suspend {
+	mux {
+		pins = "gpio50", "gpio42";
+	};
+
+	config {
+		pins = "gpio50", "gpio42";
+	};
+};
+
+&blsp2_uart2_active {
+	mux {
+		pins = "gpio24", "gpio25";
+	};
+
+	config {
+		pins = "gpio24", "gpio25";
+	};
+};
+
+&blsp2_uart2_sleep {
+	mux {
+		pins = "gpio24", "gpio25";
+	};
+
+	config {
+		pins = "gpio24", "gpio25";
+	};
+};

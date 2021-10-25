@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+&mdss_mdp {
+	qcom,mdss-pref-prim-intf = "dsi";
+};
+
+&mdss_dsi {
+	hw-config = "single_dsi";
+};
+
+&mdss_dsi1 {
+	status = "disabled";
+};
+
+&dsi_dual_nt36850_truly_cmd {
+	qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
+	qcom,mdss-dsi-bl-min-level = <1>;
+	qcom,mdss-dsi-bl-max-level = <4095>;
+	qcom,panel-supply-entries = <&dsi_panel_pwr_supply>;
+};
+

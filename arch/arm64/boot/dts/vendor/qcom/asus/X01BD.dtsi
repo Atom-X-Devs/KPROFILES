@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+#include "X01BD/main.dtsi"
+#include "common/asus-sdm660.dtsi"
+#include "common/asus-pm660.dtsi"
+#include "common/asus-sdm660-audio.dtsi"
+#include "common/asus-sdm660-camera.dtsi"
+#include "common/asus-sdm660-mdss.dtsi"
+#include "common/asus-sdm660-pinctrl.dtsi"
+#include "common/asus-sdm660-ramoops.dtsi"

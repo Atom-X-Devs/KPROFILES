@@ -1,0 +1,48 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+// asus X00TD blsp changes
+&i2c_4 {
+	synaptics_dsx@70 {
+		compatible = "synaptics,dsx-i2c";
+		reg = <0x70>;
+		interrupt-parent = <&tlmm>;
+		vdd-supply = <&pm660_l11>;
+		avdd-supply = <&pm660l_l3>;
+		lcm_lab-supply = <&lcdb_ldo_vreg>;
+		lcm_ibb-supply = <&lcdb_ncp_vreg>;
+		synaptics,pwr-reg-name = "avdd";
+		synaptics,bus-reg-name = "vdd";
+		synaptics,ub-i2c-addr = <0x2c>;
+		synaptics,irq-gpio = <&tlmm 67 0x2008>; /* IRQF_ONESHOT | IRQF_TRIGGER_LOW */
+		synaptics,irq-on-state = <0>;
+		synaptics,power-delay-ms = <200>;
+		synaptics,reset-delay-ms = <200>;
+		synaptics,reset-on-state = <0>;
+		synaptics,reset-active-ms = <20>;
+	};
+};
+
+&i2c_7 {
+	status = "okay";
+	stk@48 {
+		compatible = "stk,stk3x1x";
+		reg = <0x48>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <45 0x2>;
+		vdd-supply = <&pm660l_l3>;
+		vio-supply = <&pm660_l14>;
+		stk,irq-gpio = <&tlmm 45 0x02>;
+		pinctrl-names = "psensor_active", "psensor_suspend";
+		pinctrl-0 = <&psensor_int_active>;
+		pinctrl-1 = <&psensor_int_suspend>;
+		stk,state-reg = <0x0>;
+		stk,psctrl-reg = <0x31>;
+		stk,alsctrl-reg = <0x39>;
+		stk,ledctrl-reg = <0xFF>;
+		stk,wait-reg = <0x0A>;
+		stk,ps-thdh = <120>;
+		stk,ps-thdl = <90>;
+		stk,transmittance = <1100>;
+	};
+};

@@ -1,0 +1,55 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+#include "asus-x00td-camera.dtsi"
+#include "asus-x00td-i2c.dtsi"
+#include "asus-x00td-mdss.dtsi"
+#include "asus-x00td-pinctrl.dtsi"
+
+// asus X00TD misc changes
+&soc {
+	gpio_keys {
+		/delete-node/ home;
+	};
+
+	/delete-node/ hbtb;
+
+	qcom,glink-smem-native-xprt-adsp@86000000 {
+		/delete-property/ cpu-affinity;
+	};
+
+	ufs1: ufshc@1da4000 {
+		/delete-property/ pinctrl-names;
+		/delete-property/ pinctrl-0;
+		/delete-property/ pinctrl-1;
+	};
+
+	common_fp {
+		compatible = "common,fingerprint";
+		interrupt-parent = <&tlmm>;
+		interrupts = <72 0x0>;
+
+		common,gpio_reset = <&tlmm 20 0>;
+		common,gpio_irq = <&tlmm 72 0>;
+		common,gpio_vdd	= <&pm660l_gpios 5 0>;
+		pinctrl-names = "commonfp_reset_reset",
+				"commonfp_reset_active",
+				"commonfp_irq_active";
+		pinctrl-0 = <&commonfp_reset_reset>;
+		pinctrl-1 = <&commonfp_reset_active>;
+		pinctrl-2 = <&commonfp_irq_active>;
+	};
+
+	cdfinger_fingerprint {
+		compatible = "cdfinger,fingerprint";
+		interrupt-parent = <&tlmm>;
+		interrupts = <72 0x0>;
+		cdfinger,reset_gpio = <&tlmm 20 0>;
+		cdfinger,gpio_vdd  = <&pm660l_gpios 5 0>;
+		cdfinger,irq_gpio = <&tlmm 72 0>;
+	};
+
+	goodix_fingerprint {
+		compatible = "goodix,fingerprint";
+	};
+};

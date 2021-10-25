@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+#include "asus-sdm660.dtsi"
+
+// asus sdm660.dtsi specific diff
+&soc {
+	qcom,glink-smem-native-xprt-adsp@86000000 {
+		/delete-property/ cpu-affinity;
+	};
+
+	ufs1: ufshc@1da4000 {
+		/delete-property/ pinctrl-names;
+		/delete-property/ pinctrl-0;
+		/delete-property/ pinctrl-1;
+	};
+};

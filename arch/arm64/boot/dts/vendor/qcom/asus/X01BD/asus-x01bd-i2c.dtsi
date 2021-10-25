@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: GPL-2.0
+// Copyright (C) 2021 Atom-X-Devs < https://www.github.com/Atom-X-Devs >
+
+&i2c_4 {
+	himax_ts@48 {
+		compatible = "himax,hxcommon";
+		reg = <0x48>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <67 0x00>;
+		vdd-supply = <&pm660_l11>;
+		avdd-supply = <&pm660l_l3>;
+		lcm_lab-supply = <&lcdb_ldo_vreg>;
+		lcm_ibb-supply = <&lcdb_ncp_vreg>;
+		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend";
+		pinctrl-0 = <&ts_active>;
+		pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
+		himax,panel-coords = <0 1080 0 2280>;
+		himax,display-coords = <0 1080 0 2280>;
+		himax,irq-gpio = <&tlmm 67 0x00>;
+		himax,rst-gpio = <&tlmm 66 0x00>;
+		report_type = <1>;
+	};
+};
+
+&i2c_7 {
+	status = "okay";
+	stk@47 {
+		compatible = "stk,stk3x3x";
+		reg = <0x47>;
+		interrupt-parent = <&tlmm>;
+		interrupts = <45 0x2>;
+		vdd-supply = <&pm660l_l3>;
+		vio-supply = <&pm660_l14>;
+		stk,irq-gpio = <&tlmm 45 0x02>;
+		pinctrl-names = "psensor_active", "psensor_suspend";
+		pinctrl-0 = <&psensor_int_active>;
+		pinctrl-1 = <&psensor_int_suspend>;
+		stk,state-reg = <0x0>;
+		stk,psctrl-reg = <0xB1>;
+		stk,alsctrl-reg = <0x72>;
+		stk,ledctrl-reg = <0x60>;
+		stk,wait-reg = <0x1F>;
+		stk,ps-thdh = <1700>;
+		stk,ps-thdl = <1500>;
+		stk,transmittance = <1100>;
+	};
+};

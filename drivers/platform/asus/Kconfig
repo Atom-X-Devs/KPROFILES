@@ -25,4 +25,4 @@ config MACH_ASUS_X01BD
 	help
 	  This enables support for ASUS ZenFone Max Pro (M2).
 
-endmenuMACH_ASUS
+endmenu
